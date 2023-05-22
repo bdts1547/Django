@@ -1,0 +1,12 @@
+{% extends 'polls/base.html' %}
+
+{% block result %}
+
+    {% if q %}
+        <h3>{{ q.question_text }}</h3>
+        {% for item in q.choice_set.all %}
+            <p>{{ item.choice_text }}:{{ item.vote }}</p>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
