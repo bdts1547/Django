@@ -3,7 +3,7 @@
 {% block detail %}
 
     {% if q %}
-    <form action="{% url 'vote' q.id %}" method="post">
+    <form action="{% url 'polls:vote' q.id %}" method="post">
         {% csrf_token %}
         <h3>{{ q.question_text }}</h3>
         <ul>

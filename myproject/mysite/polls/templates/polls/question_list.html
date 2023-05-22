@@ -5,7 +5,7 @@
 
     {% if listQ %}
         {% for item in listQ %}
-            <a href="{% url 'detail' item.id %}"><p>{{ item.question_text }}</p></a>
+            <a href="{% url 'polls:detail' item.id %}"><p>{{ item.question_text }}</p></a>
            
         {% endfor %}
     {% else %}
