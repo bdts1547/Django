@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minh ngu lz</title>
+</head>
+<body>
+    <form action="{% url 'news:save' %}" method="post">
+        {% csrf_token %}
+        <p>{{ postForm.title }}</p>
+        <p>{{ postForm.content }}</p>
+        <p>{{ postForm.time_public }}</p>
+
+
+        <input type="submit" value="Add">
+    </form>
+</body>
+</html>
