@@ -1,0 +1,23 @@
+
+
+
+
+.header nav {
+    background-color: #ccc !important;
+    margin-bottom: 32px;
+}
+
+
+.container {
+    width: 50%;
+}
+
+.form-control {
+    margin: 0 auto;
+    display: flex;
+    border: none;
+}
+
+.text-input {
+    width: 100%;
+}
