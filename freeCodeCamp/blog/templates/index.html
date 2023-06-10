@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  
+</head>
+<body>
+    <div class="main">
+        <div class="header">
+            <h1>My Blog</h1>
+        </div>
+
+        <div class="container">
+            {% for post in posts reversed %}
+                <div class="post">
+                    <h2><a href="/post/{{post.id}}">  {{ post.title }} </a></h2>
+                    <b>{{ post.create_at }}</b>
+                    <p>{{ post.body | truncatewords:20 }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
