@@ -1,0 +1,58 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+
+
+	<title>Chat</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="{% static 'chat/css/home.css' %}">
+
+</head>
+
+<body>
+	<div class="container bootstrap snippets bootdey">
+		<div class="header">
+			<ul class="nav nav-pills pull-right">
+				<li><a href="#">&nbsp;</a></li>
+			</ul>
+			<h3 class="text-muted prj-name">Chat Real Time</h3>
+		</div>
+		<div style="height:auto;min-height:300px;" class="jumbotron">
+			<div class="col-md-4">
+				<img class="img-responsive center-block img-user" src="https://bootdey.com/img/Content/Manbrown2.png">
+			</div>
+			<div class="col-md-6 form-content">
+				<form accept-charset="utf-8" method="post" id="UserLoginForm" class="form-signin" action="checkroom">
+					{% csrf_token %}
+					<h1 class="form-signin-heading text-muted">Room</h1>
+					<input type="text" id="room_name" autofocus="autofocus" placeholder="Room Name" class="form-control"
+						name="room_name">
+					<input type="text" id="username" placeholder="Username" class="form-control" name="username">
+					<button type="summit" class="btn btn-lg btn-info btn-block">
+						<i class="fa fa-share"></i>
+						Enter
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-12">
+		<div class="container bootstrap snippets bootdey">
+			<footer class="footer">
+				<p>&copy; nguyendang1547@gmail.com</p>
+			</footer>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+
+	</script>
+</body>
+
+</html>
