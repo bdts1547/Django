@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="main">
+        <div class="header">Django Chat</div>
+
+        <form action="checkview" method="post" class="form-control">
+            {% csrf_token %}
+            <label for="room_name">Room name</label>
+            <input type="text" name="room_name" placeholder="Enter room name">
+            <label for="">Username</label>
+            <input type="text" name="username" placeholder="Enter username">
+            <input type="submit" value="Enter room">
+        </form>
+    </div>
+</body>
+</html>

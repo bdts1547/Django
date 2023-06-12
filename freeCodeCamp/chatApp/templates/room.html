@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <title>Room chat</title>
+    <style>
+        * {
+            margin: 0;   
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .chatbox {
+            margin: 16px;
+            padding: 16px;
+            border: 1px solid #000;
+        }
+
+        .header {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 16px;
+            
+        }
+        
+        .container {
+            background-color: #e4e6eb;
+            margin-bottom: 8px;
+        }
+
+     
+   
+        .time-create {
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+
+        .form-control input {
+            display: block;
+            width: 100%;
+            padding: 8px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header"><b>Room {{ room }}</b></div>
+
+    <div id="display"></div>
+
+    <!-- <div class="chatbox">
+        <div class="container">
+            <div class="message">
+                <div class="user"><b>Dang</b></div>
+                <div class="text">
+                    <p>Hello everyone</p>
+                </div>
+                <span class="time-create">20th, April 2011</span>
+            </div>
+        </div>
+    </div> -->
+
+    <form action="" method="post" id="form-control">
+        {% csrf_token %}
+        <input type="hidden" name="username" id="username" value="{{username}}">
+        <input type="hidden" name="room_id" id="room_id" value="{{room_detail.id}}">
+        <input type="text" name="message" id="message">
+        <input type="submit" value="Send">
+    </form>
+
+    <script>
+        $(document).ready(function(){
+
+            setInterval(function(){
+                $.ajax({
+                    type: 'GET',
+                    url: "/getMessages/{{room}}/",
+                    success: function(res){
+                        console.log(res);
+                        $('#display').empty();
+                        for (var k in res.messages) {
+                            var temp = " <div class='user'><b>" + res.messages[k].user + "</b></div>" + "<div class='text'><p>" + res.messages[k].value + "</p></div>" + "<span class='time-create'>"+ res.messages[k].date +"</span>"
+                            //var temp = "<h2>ahahahah</h2>"
+                            $('#display').append(temp)
+                        }
+                    },
+                    error: function(){
+                        alert("error")
+                    }
+                })
+            }, 1000);
+        });
+    </script>
+
+
+
+    <script type="text/javascript">
+        $(document).on('submit', '#form-control', function(e) {
+            e.preventDefault();
+        
+            $.ajax({
+                type: 'POST',
+                url: '/send',
+                data: {
+                    username: $('#username').val(),
+                    room_id: $('#room_id').val(),
+                    message: $('#message').val(),
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function(data) { // data is HttpResponse
+                    // alert(data)
+                }
+            });
+            document.getElementById('message').value = ''; // Clear input message after send
+        });
+    </script>
+   
+  
+
+</body>
+</html>
