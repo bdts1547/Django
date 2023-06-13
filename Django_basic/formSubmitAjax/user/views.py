@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import User
 
 
@@ -23,5 +23,10 @@ class Create(View):
         return HttpResponse("Add {} successful".format(username))
 
 
+class JsonV(View):
+    def get(self, request):
+        data = list(User.objects.values())
+
+        return JsonResponse(data, safe=False)
 
 
